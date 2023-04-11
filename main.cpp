@@ -91,11 +91,11 @@ int main() {
 
       //Read in values from user
       if(strcmp(input, "console") == false) {
-	//cout << "Please enter numbers (1-999) with a space between each #: ";
+	cout << "Please enter numbers (1-999) with a space between each #: ";
 
 	char input[30];
 
-	cout << "Enter a series of numbers separated by spaces: ";
+	
 	cin.getline(input, 30);
 	
 	int numbers[30];
