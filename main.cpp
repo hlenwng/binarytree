@@ -91,30 +91,85 @@ int main() {
 
       //Read in values from user
       if(strcmp(input, "console") == false) {
-	cout << "Please enter numbers (1-999) with a space between each #: ";
+	//cout << "Please enter numbers (1-999) with a space between each #: ";
 
+	char input[30];
+
+	cout << "Enter a series of numbers separated by spaces: ";
+	cin.getline(input, 30);
+	
+	int numbers[30];
+	int numIndex = 0;
+	char number[30];
+	int numberIndex = 0;
+	
+	// iterate through each character in the input string
+	for (int i = 0; input[i] != '\0'; i++) {
+	  if (input[i] == ' ') {
+            number[numberIndex] = '\0'; 
+            numbers[numIndex] = atoi(number);  //store current number in array
+            numIndex++;  
+            numberIndex = 0; 
+	  } else {
+            number[numberIndex] = input[i]; 
+            numberIndex++;
+	  }
+	}
+	
+	// add the last number (there is no space after the last number)
+	number[numberIndex] = '\0';
+	numbers[numIndex] = atoi(number);
+	
+	int numNumbers = numIndex + 1;  
+
+	for (int i = 0; i < numNumbers; i++) {
+	  //cout << numbers[i] << endl;
+	  insert(tree, numbers[i]);
+	}
+				
+	/*
 	char nums[30];
 
 	cin.get(nums, 30, '\n');
 	cin.ignore();
+	*/
+
 	
+	/*
 	for (int i = 0; i < strlen(nums); i++) {
-	  
-	  //cout << "letter " << i << " " << nums[i] << endl;
-	  
-	  if(!isspace(nums[i])) {
+	
+	//cout << "letter " << i << " " << nums[i] << endl;
+	int temp = 0;
+	char temp[30];
+	if(!isspace(nums[i])) {
+	
+	if(isdigit(nums[i])) {
+	      temp = nums[i]
+	      }*/
+	    
+	    /*
+	    while(isdigit(nums[i])) {
+	      for(int i =0; i< strlen(nums); i++) {
+		//char temp[30];
+		temp[i] = nums[i];
+	      }
+	    }
+	    insert(tree, temp); */
+	    
+	    /*
 	    if(isdigit(nums[i])) {
 	      //cout << "inserting: " << nums[i] << endl;
 	      //if inserting the root
+	      
 	      insert(tree, nums[i] - '0');
-	    }
-	  }
-	}	
+	      }*/
+	//}
+	//}	
 	cout << "#(s) have been added" << endl;
-      }
-
-      //Read in values from a file
-      if(strcmp(input, "file") == false) {
+    }
+    
+    //Read in values from a file
+    if(strcmp(input, "file") == false) {
 	fstream file;
 	file.open("number.txt");
 	//file.open(number);
